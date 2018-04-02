@@ -15,7 +15,7 @@ class SqlManager {
       for (const fileName of fileNames) {
         const fileNameWithoutExt = path.basename(fileName, '.sql')
         if (!Boolean(queries.get(fileNameWithoutExt))) {
-          const file = await readFileAsync(fileName, 'utf-8')
+          const file = await readFileAsync(path.join(dirName, fileName), 'utf-8')
   
           queries.set(fileNameWithoutExt, file)
         }
