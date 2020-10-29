@@ -1,10 +1,9 @@
-const { strict } = require('assert')
-const { join } = require('path')
-const SqlManager = require('../../src') 
+import { strict } from 'assert'
+import { join } from 'path'
+import SqlManager from '../../src'
 
 const queriesQuery1 = 'SELECT * FROM public.students;'
 const queriesQuery2 = 'SELECT * FROM public.teachers;'
-const anotherQueriesQuery1 = 'SELECT * FROM public.schools;'
 
 async function shouldLoadQueriesFromDirectory() {
     const querySource = join(__dirname, './queries')
