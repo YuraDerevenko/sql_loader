@@ -1,21 +1,21 @@
-const fs = require('fs')
-const path = require('path')
-const util = require('util')
+import { readdir, readFile } from 'fs'
+import { basename, join } from 'path'
+import { promisify } from 'util'
 
-const readDirAsync = util.promisify(fs.readdir)
-const readFileAsync = util.promisify(fs.readFile)
+const readDirAsync = promisify(readdir)
+const readFileAsync = promisify(readFile)
 
 const queries = new Map()
 
-class SqlManager {
-  static async loadDir (dirName) {
+export default class SqlManager {
+  static async loadDir (dirName: string) {
     try {
       const fileNames = await readDirAsync(dirName)
 
       for (const fileName of fileNames) {
-        const fileNameWithoutExt = path.basename(fileName, '.sql')
+        const fileNameWithoutExt = basename(fileName, '.sql')
         if (!Boolean(queries.get(fileNameWithoutExt))) {
-          const file = await readFileAsync(path.join(dirName, fileName), 'utf-8')
+          const file = await readFileAsync(join(dirName, fileName), 'utf-8')
   
           queries.set(fileNameWithoutExt, file)
         }
@@ -26,9 +26,9 @@ class SqlManager {
     }
   }
 
-  static async loadFile (fileName) {
+  static async loadFile (fileName: string) {
     try {
-      const fileNameWithoutExt = path.basename(fileName, '.sql')
+      const fileNameWithoutExt = basename(fileName, '.sql')
       if (!Boolean(queries.get(fileNameWithoutExt))) {
         const file = await readFileAsync(fileName, 'utf-8')
 
@@ -40,9 +40,7 @@ class SqlManager {
     }
   }
 
-  static getQuery (queryName) {
+  static getQuery (queryName: string): string {
     return queries.get(queryName)
   }
 }
-
-module.exports = SqlManager

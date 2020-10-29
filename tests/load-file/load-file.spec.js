@@ -1,6 +1,6 @@
 const { strict } = require('assert')
 const { join } = require('path')
-const SqlManager = require('../..') 
+const SqlManager = require('../../src') 
 
 const anotherQueriesQuery1 = 'SELECT * FROM public.schools;'
 
