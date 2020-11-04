@@ -1,6 +1,6 @@
 {
   "name": "queryloader",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "./lib/index.js",
   "engines": {
@@ -15,6 +15,13 @@
     "type": "git",
     "url": "https://github.com/YuraDerevenko/sql_loader"
   },
+  "keywords": [
+    "pgsql",
+    "postgres",
+    "mysql",
+    "mariadb",
+    "query"
+  ],
   "author": "Yurii Derevenko <jedprankster7@gmail.com>",
   "license": "ISC",
   "devDependencies": {
